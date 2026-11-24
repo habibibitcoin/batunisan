@@ -164,6 +164,67 @@ body::after {
   pointer-events: none;
 }
 
+.stone.type-kotak {
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+}
+
+.stone.type-panjang {
+  aspect-ratio: 3 / 2;
+  border-radius: 4px;
+}
+
+.stone.type-kembang {
+  aspect-ratio: 3 / 4;
+  border-radius: 46% 46% 5px 5px / 24% 24% 5px 5px;
+}
+
+.stone.type-kembang::before {
+  border-radius: 46% 46% 2px 2px / 24% 24% 2px 2px;
+}
+
+/* Floral carvings — only shown on the standing-with-flowers model */
+.floral {
+  display: none;
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  color: #dfc485;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: color 0.6s ease;
+}
+
+.stone.type-kembang .floral:nth-of-type(1) {
+  display: block;
+  top: 13%;
+  left: 12%;
+}
+
+.stone.type-kembang .floral:nth-of-type(2) {
+  display: block;
+  top: 13%;
+  right: 12%;
+}
+
+.stone.type-kembang .floral:nth-of-type(3) {
+  display: block;
+  bottom: 9%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translateX(-50%);
+}
+
+.stone.mat-keramik .floral,
+.stone.mat-keramik.type-kembang .floral {
+  color: #4e4a43;
+}
+
+.stone.mat-granit-lantai .floral {
+  color: #e8cd93;
+}
+
 .stone.mat-keramik {
   background-color: #e4dccb;
   background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent 62%);
@@ -265,9 +326,70 @@ body::after {
   text-align: center;
 }
 
+/* Book model: data on the left, prayer on the right */
 .stone.type-buku .stone-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-areas:
+    'nama doa'
+    'lahir doa'
+    'wafat doa';
+  align-items: center;
+  gap: 0.25rem 0.7rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.2rem;
+  text-align: left;
+}
+
+.stone.type-buku .engraving.nama {
+  grid-area: nama;
+  font-size: 25px;
+  text-align: left;
+}
+
+.stone.type-buku .engraving.tanggal {
+  grid-area: lahir;
+  font-size: 12px;
+  text-align: left;
+}
+
+.stone.type-buku .engraving.tanggal + .engraving.tanggal {
+  grid-area: wafat;
+}
+
+.stone.type-buku .engraving.doa {
+  grid-area: doa;
+  font-size: 18px;
+  text-align: center;
+  align-self: center;
+  padding-left: 0.4rem;
+}
+
+.stone.type-buku .engrave-ornament {
+  display: none;
+}
+
+.stone.type-kotak .stone-inner,
+.stone.type-panjang .stone-inner {
+  padding: 1.6rem 1.2rem;
   gap: 0.4rem;
-  padding: 1.5rem 1.7rem;
+}
+
+.stone.type-kotak .engraving.nama,
+.stone.type-panjang .engraving.nama {
+  font-size: 25px;
+}
+
+.stone.type-panjang .engraving.doa {
+  font-size: 16px;
+}
+
+.stone.type-kembang .stone-inner {
+  padding: 2.6rem 1.4rem 2.2rem;
+  gap: 0.5rem;
+}
+
+.stone.type-kembang .engraving.nama {
+  font-size: 27px;
 }
 
 .rule {
